@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 import {
   Card,
   CardContent,
@@ -7,39 +7,37 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-import { Input } from "@/components/ui/input"
-import Calendarr from './calendar';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { DatePickerWithPresets } from "./calendar";
+import Priority from "./Priority";
 
-function AddTaskCard() {
+function AddTaskCard({ handleClick }) {
   const [when, setWhen] = useState(null);
 
-  const handleWhen = (date) => {
-    setWhen(date)
-  }
-
   return (
-    <Card>
+    <Card className="shadow-md">
       <CardHeader>
         <Input type="text" placeholder="Title" />
         <Input type="text" placeholder="Description" />
       </CardHeader>
 
-      <CardContent>
-        <Popover>
-          <PopoverTrigger>{when || "when"}</PopoverTrigger>
-          <PopoverContent className="w-full p-0 shadow-none ">
-            <Calendarr handleWhen={handleWhen} />
-            
-          </PopoverContent>
-        </Popover>
+      <CardContent className="flex gap-3">
+        <DatePickerWithPresets />
+        <Priority />
       </CardContent>
 
-      <CardFooter>
-        <p>Card Footer</p>
+      <CardFooter className="flex gap-2 justify-end">
+          <Button variant="outline" onClick={() => handleClick(false)} >Cancel</Button>
+          <Button onClick={() => handleClick(false)}>Add task</Button>
       </CardFooter>
-    </Card>  
-  )
+    </Card>
+  );
 }
 
-export default AddTaskCard
+export default AddTaskCard;
