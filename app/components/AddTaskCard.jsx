@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useState } from "react";
 import {
   Card,
@@ -14,29 +16,46 @@ import {
 } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea"
 import { DatePickerWithPresets } from "./calendar";
 import Priority from "./Priority";
+import { addTask } from "@/actions/actions";
+import { format } from "date-fns";
 
 function AddTaskCard({ handleClick }) {
-  const [when, setWhen] = useState(null);
+  const [selectedDate, setSelectedDate] = useState("");
+  const [priority, setPriority] = useState("");
+
+  const handleDate = (date) => {
+    setSelectedDate(format(date, "PP"));
+  }
+
+  const handlePriority = (prior) => {
+    setPriority(prior)
+  }
 
   return (
-    <Card className="shadow-md">
-      <CardHeader>
-        <Input type="text" placeholder="Title" />
-        <Input type="text" placeholder="Description" />
-      </CardHeader>
+    <form action={addTask}>
+      <Card className="shadow-md">
+        <CardHeader>
+          <Input type="text" placeholder="Title" name="title" required/>
+          <Textarea placeholder="Description" name="description" required/>
+        </CardHeader>
 
-      <CardContent className="flex gap-3">
-        <DatePickerWithPresets />
-        <Priority />
-      </CardContent>
+        <CardContent className="flex gap-3">
+          <DatePickerWithPresets date={selectedDate} setDate={handleDate} />
+          <input type="hidden" name="date" value={selectedDate} required/>
 
-      <CardFooter className="flex gap-2 justify-end">
-          <Button variant="outline" onClick={() => handleClick(false)} >Cancel</Button>
-          <Button onClick={() => handleClick(false)}>Add task</Button>
-      </CardFooter>
-    </Card>
+          <Priority handlePriority={handlePriority}  />
+          <input type="hidden" name="priority" value={priority}/>
+        </CardContent>
+
+        <CardFooter className="flex gap-2 justify-end">
+            <Button variant="outline" onClick={() => handleClick(false)} >Cancel</Button>
+            <Button type="submit">Add task</Button>
+        </CardFooter>
+      </Card>
+    </form>
   );
 }
 

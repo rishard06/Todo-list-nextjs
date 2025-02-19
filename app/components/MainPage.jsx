@@ -4,10 +4,11 @@ import React, { useState } from "react";
 import AddTaskCard from "./AddTaskCard";
 import { PlusCircle } from "lucide-react";
 
-function MainPage() {
+function MainPage({ pageProps, children }) {
   const [addTask, setAddTask] = useState(false);
   const handleClick = (e) => {
     setAddTask((prev) => e);
+    console.log(pageProps)
   };
 
   return (
@@ -24,6 +25,8 @@ function MainPage() {
         </div>
 
         {addTask && <AddTaskCard handleClick={handleClick} />}
+
+        {children}
       </div>
     </>
   );
