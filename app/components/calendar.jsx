@@ -20,9 +20,8 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 
-export function DatePickerWithPresets() {
-  const [date, setDate] = React.useState()
-  // console.log(format(date, "PP"))
+export function DatePickerWithPresets({ date, setDate }) {
+
   return (
     <Popover>
       <PopoverTrigger asChild>

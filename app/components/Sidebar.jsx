@@ -19,6 +19,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarTrigger
 } from "@/components/ui/sidebar";
 import Link from "next/link";
 import MainPage from "./MainPage";
@@ -55,11 +56,12 @@ const items = [
 function Sidebarr() {
   return (
     <>
-      <Sidebar variant="sidebar | floating | inset">
+      <Sidebar variant="sidebar | floating | inset" className="shadow-lg">
         <SidebarContent>
-          <SidebarGroup>
-            <SidebarGroupLabel className="font-bold text-lg">
-              Task
+          <SidebarGroup >
+            <SidebarGroupLabel className="font-bold text-lg flex justify-between">
+              <span>Task</span>
+              <SidebarTrigger />
             </SidebarGroupLabel>
 
             <SidebarGroupContent>

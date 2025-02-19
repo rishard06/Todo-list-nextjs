@@ -18,8 +18,8 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${montserrat.className} antialiased`}>
       <SidebarProvider>
+        <SidebarTrigger className="my-3 mx-2"/>
         <Sidebarr />
-        <SidebarTrigger />
         
         {children}
       </SidebarProvider>
