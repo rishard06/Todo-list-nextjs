@@ -3,7 +3,7 @@ import prisma from "@/lib/db";
 
 async function TaskList() {
   const list = await prisma.todo.findMany();
-  console.log(list);
+  // console.log(list);
   return (
     <div>
       <h1>helo</h1>

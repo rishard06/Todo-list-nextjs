@@ -1,14 +1,12 @@
 import React from "react";
-import {
-  SidebarFooter,
-} from "@/components/ui/sidebar";
+import { SidebarFooter } from "@/components/ui/sidebar";
 import {
   Calendar,
   Home,
   ListCheck,
   Search,
   LogIn,
-  StickyNote
+  StickyNote,
 } from "lucide-react";
 import {
   Sidebar,
@@ -19,11 +17,12 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarTrigger
+  SidebarTrigger,
 } from "@/components/ui/sidebar";
 import Link from "next/link";
 import MainPage from "./MainPage";
-// import { AppSidebar } from "@/components/app-sidebar"
+import { auth } from "@/lib/auth";
+import AuthButton from "./AuthButton";
 
 const items = [
   {
@@ -53,12 +52,14 @@ const items = [
   },
 ];
 
-function Sidebarr() {
+async function Sidebarr() {
+  const session = await auth();
+
   return (
     <>
       <Sidebar variant="sidebar | floating | inset" className="shadow-lg">
         <SidebarContent>
-          <SidebarGroup >
+          <SidebarGroup>
             <SidebarGroupLabel className="font-bold text-lg flex justify-between">
               <span>Task</span>
               <SidebarTrigger />
@@ -82,10 +83,7 @@ function Sidebarr() {
         </SidebarContent>
 
         <SidebarFooter>
-          <Link href={"/signIn"} className="flex gap-2">
-            <LogIn />
-            Sign In
-          </Link>
+          <AuthButton />
         </SidebarFooter>
       </Sidebar>
     </>

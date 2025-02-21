@@ -35,7 +35,7 @@ function AddTaskCard({ handleClick }) {
   }
 
   return (
-    <form action={addTask}>
+    <form action={addTask} onSubmit={() => handleClick(false)}>
       <Card className="shadow-md">
         <CardHeader>
           <Input type="text" placeholder="Title" name="title" required/>

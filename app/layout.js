@@ -11,6 +11,9 @@ const montserrat = Montserrat({
 export const metadata = {
   title: "Todo List",
   description: "Simple todo list project",
+  icons: {
+    icon: '/to-do-list.png',
+  },
 };
 
 export default function RootLayout({ children }) {
