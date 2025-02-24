@@ -19,7 +19,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea"
 import { DatePickerWithPresets } from "./calendar";
 import Priority from "./Priority";
-import { addTask } from "@/actions/actions";
+import { addTask } from "@/actions/todo/createTask";
 import { format } from "date-fns";
 
 function AddTaskCard({ handleClick }) {

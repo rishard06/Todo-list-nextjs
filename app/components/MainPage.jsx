@@ -8,7 +8,7 @@ function MainPage({ pageProps, children }) {
   const [addTask, setAddTask] = useState(false);
   const handleClick = (e) => {
     setAddTask((prev) => e);
-    console.log(pageProps)
+    // console.log( pageProps)
   };
 
   return (

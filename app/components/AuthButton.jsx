@@ -1,15 +1,17 @@
 import React from "react";
 import { signIn, signOut, auth } from "@/lib/auth";
 import { LogIn } from "lucide-react";
+import { syncUser } from "@/actions/user/user.action";
 
 async function authButton() {
   const session = await auth();
-  console.log(session);
-
+  
+  if(session) await syncUser();
+  
   return (
     <>
       
-      {!session ? (
+      {!session && !session?.user ? (
         <form
           action={async () => {
             "use server";
