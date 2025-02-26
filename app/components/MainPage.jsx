@@ -13,7 +13,7 @@ function MainPage({ pageProps, children }) {
 
   return (
     <>
-      <div className="mx-16 my-7 col-span-2">
+      <div className="mx-16 my-7 col-span-2 relative">
         <h1 className="text-2xl font-bold">Today</h1>
 
         <div className="w-full flex flex-col ">
