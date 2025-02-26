@@ -3,6 +3,8 @@
 import React from "react";
 import { useSearchParams } from "next/navigation";
 import { useState, useEffect } from "react";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 
 function Details() {
   const searchParams = useSearchParams();
@@ -18,6 +20,7 @@ function Details() {
           throw new Error("faild to fetch");
         }
         const data = await response.json();
+        console.log(data);
         setTodoData(data);
       } catch (error) {
         console.error("Error fetching data", error);
@@ -30,9 +33,16 @@ function Details() {
   }, [id]);
 
   return (
-    <div>
-      Hello
-      <p>{todoData.title}</p>
+    <div className="my-7 mx-7">
+      <h2>Details: </h2>
+
+      <form action="">
+        <Input type="text" value={todoData?.title} />
+
+        <Textarea type="text" value={todoData?.description} />
+
+        <Input type="text" />
+      </form>
     </div>
   );
 }

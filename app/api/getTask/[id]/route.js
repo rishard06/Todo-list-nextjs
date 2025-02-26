@@ -10,7 +10,6 @@ export async function GET(request, { params }) {
       }
     });
     
-    console.log(getTask)
     if (!getTask)
       return NextResponse.json({ error: "Task not found" }, { status: 404 });
 

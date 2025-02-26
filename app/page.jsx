@@ -9,7 +9,7 @@ export default function Home() {
       <MainPage>
         <TaskList />
       </MainPage>
-      <Details />
+      {/* <Details /> */}
    </div>
   );
 }

@@ -4,22 +4,17 @@ import { auth } from "@/lib/auth";
 import prisma from "@/lib/db";
 import { revalidatePath } from "next/cache";
 
-export async function completeTask(formData) {
-  const isCompleted = formData.get('completed') === "on";
-  const authorId = formData.get('authorId');
-  const id = formData.get('id');
-  
+export async function completeTask (id, completed) {
   try {
     await prisma.todo.update({
       where: {
         id: id,
-        authorId: authorId,
       },
       data: {
-        completed: isCompleted,
+        completed: !completed,
       }
     })
-    console.log("this is checke box", isCompleted)
+
     revalidatePath('/')
   } catch (error) {
     console.error("complete error", error.message);
