@@ -3,8 +3,6 @@ import prisma from "@/lib/db";
 import { auth } from "@/lib/auth";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
-import { Checkbox } from "@/components/ui/checkbox";
-import { completeTask } from "@/actions/todo/completeTask";
 import CheckTodo from "./CheckTodo";
 import { format } from "date-fns";
 
@@ -35,12 +33,12 @@ async function TaskList() {
   });
 
   return (
-    <div>
+    <div className="border-[1px] p-4 rounded-md bg-white">
       <ul>
         {list &&
           list?.map((todo) => (
-            <li key={todo.id}>
-              <div className="flex w-full hover:bg-black/5 cursor-pointer">
+            <li key={todo.id} className="border-b-[1px] last:border-b-0">
+              <div className="flex w-full cursor-pointer">
                 <CheckTodo todo={todo} />
                 <Link
                   href={{
@@ -50,9 +48,10 @@ async function TaskList() {
                       authorId: todo.authorId,
                     },
                   }}
-                  className={`flex border-b-[1px] w-full h-10 gap-2 p-2 justify-between items-center font-semibold text-black/50 ${
+                  className={`flex w-full h-10 gap-2 p-2 justify-between items-center font-semibold text-black/50 ${
                     todo.completed ? "line-through" : null
-                  } active:scale-95 transition-transform ease-out duration-100`}
+                  } active:scale-95 transition-transform ease-out duration-100
+                  hover:bg-black/5 transition-color`}
                 >
                   <p>{todo.title}</p>
                   <span className="flex gap-2 items-center">

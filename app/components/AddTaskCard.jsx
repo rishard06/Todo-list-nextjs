@@ -36,7 +36,7 @@ function AddTaskCard({ handleClick }) {
 
   return (
     <form action={addTask} onSubmit={() => handleClick(false)}>
-      <Card className="shadow-md absolute w-full">
+      <Card className="shadow-md absolute w-full ">
         <CardHeader>
           <Input type="text" placeholder="Title" name="title" required/>
           <Textarea placeholder="Description" name="description"/>

@@ -1,17 +1,17 @@
 "use client";
 
 import React from "react";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { completeTask } from "@/actions/todo/completeTask";
 
 function CheckTodo({ todo }) {
   const [isChecked, setIsChecked] = useState(todo.completed);
 
-  const handleChange = async () => {
+  const handleChange = useCallback(async () => {
     setIsChecked(!isChecked);
     await completeTask(todo.id, todo.completed);
-  };
+  }, [isChecked, todo.id, todo.completed]);
 
   return (
     <div>
