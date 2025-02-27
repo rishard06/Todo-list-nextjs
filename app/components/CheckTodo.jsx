@@ -13,20 +13,19 @@ function CheckTodo({ todo }) {
     await completeTask(todo.id, todo.completed);
   }, [isChecked, todo.id, todo.completed]);
 
+  const priority = {
+    "priority 1": "border-red-600",
+    "priority 2": "border-blue-600",
+    "priority 3": "border-yellow-500",
+    "priority 4": "border-black",
+  };
+
   return (
     <div>
       <Checkbox
         checked={isChecked}
         onCheckedChange={handleChange}
-        className={`mt-3 ${
-          todo.priority === "priority 1"
-            ? "border-red-600"
-            : todo.priority === "priority 2"
-            ? "border-blue-600"
-            : todo.priority === "priority 3"
-            ? "border-yellow-500"
-            : "border-black"
-        }`}
+        className={`mt-3 ${priority[todo?.priority]} ${!todo.priority ? "border-gray-100" : null}`}
       />
     </div>
   );

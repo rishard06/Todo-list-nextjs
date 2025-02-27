@@ -56,7 +56,7 @@ async function TaskList() {
                   <p>{todo.title}</p>
                   <span className="flex gap-2 items-center">
                     <p className="text-xs text-black/40">
-                      created at: {format(todo.createdAt, "PP")}
+                      {format(todo.createdAt, "P")}
                     </p>
                     <ChevronRight className="text-black/50" />
                   </span>
