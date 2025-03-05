@@ -17,7 +17,7 @@ function CheckTodo({ todo }) {
     "priority 1": "border-red-600",
     "priority 2": "border-blue-600",
     "priority 3": "border-yellow-500",
-    "priority 4": "border-black",
+    "priority 4": "border-black dark:border-white",
   };
 
   return (
@@ -25,7 +25,7 @@ function CheckTodo({ todo }) {
       <Checkbox
         checked={isChecked}
         onCheckedChange={handleChange}
-        className={`mt-3 ${priority[todo?.priority]} ${!todo.priority ? "border-gray-100" : null}`}
+        className={`dark:shadow-white/40 mt-3 ${priority[todo?.priority]} ${!todo.priority ? "border-gray" : null}`}
       />
     </div>
   );

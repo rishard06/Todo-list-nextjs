@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import {
   Sidebar,
+  SidebarHeader,
   SidebarContent,
   SidebarGroup,
   SidebarGroupContent,
@@ -37,17 +38,17 @@ const items = [
   },
   {
     title: "Today",
-    url: "#",
+    url: "/today",
     icon: ListCheck,
   },
   {
     title: "Calendar",
-    url: "#",
+    url: "/calendar",
     icon: Calendar,
   },
   {
     title: "Sticky Notes",
-    url: "#",
+    url: "/sticky",
     icon: StickyNote,
   },
 ];
@@ -58,13 +59,15 @@ async function Sidebarr() {
   return (
     <>
       <Sidebar variant="sidebar | floating | inset" className="shadow-lg">
-        <SidebarContent>
-          <SidebarGroup>
-            <SidebarGroupLabel className="font-bold text-lg flex justify-between">
-              <span>Task</span>
-              <SidebarTrigger />
-            </SidebarGroupLabel>
+        <SidebarHeader>
+          <SidebarGroupLabel className="font-bold text-lg flex justify-between">
+            <span>Task</span>
+            <SidebarTrigger />
+          </SidebarGroupLabel>
+        </SidebarHeader>
 
+        <SidebarContent className="sidebar">
+          <SidebarGroup>
             <SidebarGroupContent>
               <SidebarMenu>
                 {items.map((item) => (

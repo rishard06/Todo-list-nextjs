@@ -95,5 +95,9 @@ body {
   }
   body {
     @apply bg-background text-foreground;
+    @apply transition-colors duration-500;
+  }
+  .sidebar li a {
+    @apply active:scale-95
   }
 }

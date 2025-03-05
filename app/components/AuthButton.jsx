@@ -31,13 +31,13 @@ async function authButton() {
           }}
         >
           <div className="flex mx-2 items-center gap-2">
-            <img src={session?.user.image} width="30" alt="user" />
-            <p>{session?.user.name}</p>
+            <img src={session?.user.image} className="rounded-full" width="25" alt="user" />
+            <p className="text-sm">{session?.user.name}</p>
           </div>
           
-          <div className="flex m-2 hover:cursor-pointer gap-2">
-            <LogIn />
-            <button type="submit">Log Out</button>
+          <div className="flex m-2 mt-4 hover:cursor-pointer gap-2">
+            <LogIn className="w-5" />
+            <button type="submit" className="text-sm">Log Out</button>
           </div>
         </form>
       )}

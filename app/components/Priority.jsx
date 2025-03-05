@@ -8,10 +8,10 @@ import {
 } from "@/components/ui/select";
 import { Flag } from "lucide-react";
 
-function Priority({handlePriority }) {
+function Priority({ handlePriority, defaultVal }) {
   return (
-    <Select onValueChange={handlePriority}>
-      <SelectTrigger className="w-[140px]">
+    <Select onValueChange={handlePriority} value={defaultVal} required={true}>
+      <SelectTrigger className="w-[150px]">
         <SelectValue placeholder="Priority" />
       </SelectTrigger>
       <SelectContent>

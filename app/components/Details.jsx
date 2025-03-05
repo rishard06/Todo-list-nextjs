@@ -13,12 +13,12 @@ import { updateTask } from "@/actions/todo/updateTask";
 import { deleteTask } from "@/actions/todo/deleteTask";
 import { XCircle } from "lucide-react";
 
-function Details() {
+function Details({ path }) {
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
 
   const [todoData, setTodoData] = useState(null);
-  const [isDelete, setIsDelete] = useState(false);
+  const [isDelete, setIsDelete] = useState(false);  
 
   useEffect(() => {
     async function getData() {
@@ -68,31 +68,31 @@ function Details() {
     "priority 1": "bg-red-600",
     "priority 2": "bg-blue-600",
     "priority 3": "bg-yellow-500",
-    "priority 4": "bg-black/50",
+    "priority 4": "bg-black/50 dark:bg-gray-800",
   };
 
   const router = useRouter();
 
   return (
     <div className="my-7 mx-7">
-      {id && (
-        <div className="flex justify-between items-center mb-5">
-          <h2 className="text-lg font-bold text-black/80">Details: </h2>
+      <div className="flex justify-between items-center mb-5">
+        <h2 className="dark:text-white text-lg font-bold text-black/80">Details: </h2>
 
+        {id && (
           <button
             type="button"
             onClick={() => {
-              router.push("/"), console.log(id);
+              router.push(path);
             }}
           >
-            <XCircle className="text-black/70" />
+            <XCircle className="dark:text-white/70 text-black/70" />
           </button>
-        </div>
-      )}
+        )}
+      </div>
 
       {id && (
         <form action="" className="flex flex-col gap-5">
-          <label htmlFor="title" className="text-sm font-bold text-black/70">
+          <label htmlFor="title" className="dark:text-white/60 text-sm font-bold text-black/70">
             Title
             <Input
               type="text"
@@ -104,7 +104,7 @@ function Details() {
 
           <label
             htmlFor="description"
-            className="text-sm font-bold text-black/70"
+            className="dark:text-white/60 text-sm font-bold text-black/70"
           >
             Description
             <Textarea
@@ -116,21 +116,21 @@ function Details() {
           </label>
 
           <div className="flex flex-col justify-between items-center lg:flex-row">
-            <p className="text-sm font-bold text-black/50">Priority</p>
+            <p className="dark:text-white/60 text-sm font-bold text-black/50">Priority</p>
             <span className="flex flex-col gap-2 items-center lg:flex-row">
               <p
                 className={`text-xs text-black/70 font-bold py-[1px] px-3 rounded-2xl ${
                   priority[todoData?.priority]
-                }`}
+                } dark:text-white/60`}
               >
                 {todoData?.priority}
               </p>
-              <Priority handlePriority={handlePriority} />
+              <Priority handlePriority={handlePriority} defaultVal={todoData?.priority}/>
             </span>
           </div>
 
           <div className="flex flex-col justify-between items-center lg:flex-row">
-            <p className="text-sm font-bold text-black/50">Due date</p>
+            <p className="dark:text-white/60 text-sm font-bold text-black/50">Due date</p>
             <DatePickerWithPresets date={todoData?.when} setDate={handleDate} />
           </div>
 
@@ -157,6 +157,7 @@ function Details() {
                 handleIsDelete={handleIsDelete}
                 handleDelete={handleDelete}
                 todoData={todoData}
+                path={path}
               />
             )}
           </div>

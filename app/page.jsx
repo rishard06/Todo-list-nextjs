@@ -1,15 +1,20 @@
-import Image from "next/image";
 import Details from "./components/Details";
 import MainPage from "./components/MainPage";
 import TaskList from "./components/TaskList";
+import { Suspense } from "react";
 
 export default function Home() {
   return (
-   <div className="w-full grid grid-cols-3">
+    <div className="w-full grid grid-cols-3">
       <MainPage>
-        <TaskList />
+        <Suspense fallback={<p>Loading...</p>}>
+          <TaskList />
+        </Suspense>
       </MainPage>
-      <Details />
-   </div>
+
+      <Suspense fallback={<p>Loading...</p>}>
+        <Details path={"/"} />
+      </Suspense>
+    </div>
   );
 }

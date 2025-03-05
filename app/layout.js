@@ -2,6 +2,8 @@ import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import Sidebarr from "./components/Sidebar";
 import { Geist, Geist_Mono, Montserrat } from "next/font/google";
 import "./globals.css";
+import DarkModeBtn from "./components/DarkModeBtn";
+import ThemesProvider from "./components/ThemeProvider";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -12,20 +14,24 @@ export const metadata = {
   title: "Todo List",
   description: "Simple todo list project",
   icons: {
-    icon: '/to-do-list.png',
+    icon: "/to-do-list.png",
   },
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={`${montserrat.className} antialiased`}>
-      <SidebarProvider>
-        <SidebarTrigger className="my-3 mx-2"/>
-        <Sidebarr />
-        
-        {children}
-      </SidebarProvider>
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={` ${montserrat.className} antialiased`}
+        >
+        <ThemesProvider>
+          <SidebarProvider>
+            <SidebarTrigger className="my-3 mx-2" />
+            <Sidebarr />
+            <DarkModeBtn />
+            {children}
+          </SidebarProvider>
+        </ThemesProvider>
       </body>
     </html>
   );
