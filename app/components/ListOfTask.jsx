@@ -5,6 +5,8 @@ import CheckTodo from "./CheckTodo";
 import { format } from "date-fns";
 
 async function ListOfTask({ list, path }) {
+  "use cache"
+
   return (
       <ul>
         {list &&

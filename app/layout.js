@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import Sidebarr from "./components/Sidebar";
 import { Geist, Geist_Mono, Montserrat } from "next/font/google";
@@ -21,16 +22,16 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={` ${montserrat.className} antialiased`}
-        >
+      <body className={` ${montserrat.className} antialiased`}>
         <ThemesProvider>
-          <SidebarProvider>
-            <SidebarTrigger className="my-3 mx-2" />
-            <Sidebarr />
-            <DarkModeBtn />
-            {children}
-          </SidebarProvider>
+          <Suspense fallback={<p>Loading...</p>}>
+            <SidebarProvider>
+              <SidebarTrigger className="my-3 mx-2" />
+              <Sidebarr />
+              <DarkModeBtn />
+              {children}
+            </SidebarProvider>
+          </Suspense>
         </ThemesProvider>
       </body>
     </html>
