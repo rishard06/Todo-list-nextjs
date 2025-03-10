@@ -69,6 +69,7 @@ const config = {
     animation: {
       popup: "popup 300ms ease-in-out",
       rotate: "rotate 1000ms ease-out ",
+      spinning: "rotate 1000ms linear infinite"
     },
     keyframes: {
       popup: {

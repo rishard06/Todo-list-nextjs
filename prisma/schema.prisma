@@ -18,6 +18,7 @@ model User {
   email String  @unique
   name  String?
   todos Todo[]
+  Note  Note[]
 }
 
 model Todo {
@@ -30,4 +31,15 @@ model Todo {
   author      User     @relation(fields: [authorId], references: [id])
   authorId    String
   createdAt   DateTime @default(now())
+}
+
+model Note {
+  id       String   @id @default(uuid())
+  title    String
+  content  String
+  color    String
+  position String
+  author   User     @relation(fields: [authorId], references: [id])
+  authorId String
+  created  DateTime @default(now())
 }
