@@ -10,7 +10,7 @@ async function page() {
 
   return (
     <LoadingProvider>
-      <div className="w-full h-screen m-7">
+      <div className="w-full h-screen p-7">
         <div className="flex flex-row justify-between mb-5">
           <h1 className="text-2xl font-bold my-2">Sticky Notes</h1>
 
