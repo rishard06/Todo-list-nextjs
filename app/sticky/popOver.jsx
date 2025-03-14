@@ -42,7 +42,7 @@ function PopOver({ id }) {
         <Ellipsis className="cursor-pointer active:scale-105 text-black/60 rotate-90 hover:bg-black/10 rounded-full " />
       </PopoverTrigger>
 
-      <PopoverContent className="relative flex flex-col gap-1 p-2 w-auto rounded-xl">
+      <PopoverContent className="relative flex flex-col gap-1 p-2 w-auto rounded-xl ">
         <Color id={id} />
         <Button 
           onClick={handleDone} 

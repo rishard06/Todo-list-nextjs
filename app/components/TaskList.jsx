@@ -1,7 +1,6 @@
 import React from "react";
 import prisma from "@/lib/db";
 import { auth } from "@/lib/auth";
-import { Suspense } from "react";
 import ListOfTask from "./ListOfTask";
 
 async function TaskList() {
@@ -18,7 +17,7 @@ async function TaskList() {
   const user = await prisma.user.findUnique({
     where: {
       email: session?.user.email,
-    }, 
+    },
   });
 
   const list = await prisma.todo.findMany({
@@ -32,9 +31,7 @@ async function TaskList() {
 
   return (
     <div className="dark:bg-black/50  border-[1px] p-4 rounded-md bg-white">
-      {/* <Suspence fallback={<p>Loading...</p>}>   */}
-        <ListOfTask className="my-2" list={list} path={"/"}/>
-      {/* </Suspence> */}
+      <ListOfTask className="my-2" list={list} path={"/"} />
     </div>
   );
 }

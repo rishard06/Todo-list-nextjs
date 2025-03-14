@@ -10,8 +10,13 @@ function  addNotes() {
   
   const handleClick = async () => {
     setIsLoading(true)
-    await addNote("Title", "Contents...")
-    setIsLoading(false)
+    try{
+      await addNote("Title", "Contents...")
+    } finally {
+      setTimeout(() => {
+        setIsLoading(false)
+      }, 500);
+    };
   }
 
   return (
