@@ -39,6 +39,7 @@ model Note {
   content  String
   color    String
   position String
+  done     Boolean  @default(false)
   author   User     @relation(fields: [authorId], references: [id])
   authorId String
   created  DateTime @default(now())

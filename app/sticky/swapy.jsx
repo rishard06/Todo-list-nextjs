@@ -3,13 +3,13 @@
 import { createSwapy } from "swapy";
 import { useEffect, useRef, useState, useContext } from "react";
 import Loader from "./Loader";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+import Inputs from "./inputs";
 import PopOver from "./popOver";
 import { useLoading } from "./contextFile";
+import { NotesLoadingProvider } from "./contextFile";
 
 export default function App({ data }) {
-  const { isLoading } = useLoading()
+  const { isLoading } = useLoading();
   const swapy = useRef(null);
   const container = useRef(null);
 
@@ -17,7 +17,7 @@ export default function App({ data }) {
     // If container element is loaded
     if (container.current) {
       swapy.current = createSwapy(container.current, {
-        animation: "spring"
+        animation: "spring",
       });
 
       // Your event listeners
@@ -35,34 +35,38 @@ export default function App({ data }) {
 
   return (
     <div
-    className="relative grid auto-rows-max grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 justify-items-center items-center gap-5 min-h- bg-slate-400/10 p-3 rounded-3xl"
-    ref={container}
+      className="relative z-0 grid auto-rows-max grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 justify-items-center items-center gap-5 min-h- bg-slate-400/10 p-3 rounded-3xl"
+      ref={container}
     >
       {isLoading && <Loader />}
-      {data.map((note) => {
-        const { id, title, content, color } = note;
-        return (
-          <div key={id} data-swapy-slot={id} className="rounded-xl">
-            <div
-              data-swapy-item={id}
-              className={`relative ${color} bg-yellow-100 rounded-xl h-auto max-w-[230px]  px-2 pb-2`}
-            >
-              <PopOver id={id} />
 
-              <Input
-                type="text"
-                defaultValue={title}
-                className="bg-none border-none text-black/60 font-bold p-1"
-              />
-              <Textarea
-                className="h-[200px] border-none shadow-none text-black/70 py-0 px-1"
-                defaultValue={content}
-              ></Textarea>
-            </div>
-          </div>
-        );
-      })}
-      
+      {Array.isArray(data) && data.length
+        ? data?.map((note) => {
+            const { id, title, content, color, done } = note;
+            return (
+              <div
+                key={id}
+                data-swapy-slot={id}
+                className={`rounded-xl border-4 ${
+                  done ? "border-green-400" : "border-slate-500"
+                }`}
+              >
+                <div
+                  data-swapy-item={id}
+                  className={`relative ${
+                    color || "bg-yellow-100"
+                  } rounded-lg h-auto max-w-[230px]  px-2 pb-2`}
+                >
+                  <NotesLoadingProvider>
+                    <PopOver id={id} />
+                  
+                    <Inputs note={note} />
+                  </NotesLoadingProvider>
+                </div>
+              </div>
+            );
+          })
+        : null}
     </div>
   );
 }

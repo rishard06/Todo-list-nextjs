@@ -19,12 +19,25 @@ export const useLoading = () => useContext(LoadingContext);
 
 //for color NoteLoading
 export const NotesLoadingProvider = ({ children }) => {
-  const [isColorLoading, setIsLoading] = useState(false);
+  const [loadingState, setLoadingState] = useState({});
+
+  const setIsLoading = (id, isLoading) => {
+    setLoadingState((prev) => ({
+      ...prev,
+      [id]: isLoading,
+    }));
+  };
+
+  const isLoading = (id) => {
+    return loadingState[id] || false;
+  };
+
+  const value = { isLoading, setIsLoading }
 
   return (
-    <NotesLoadingContext.Provider value={{ isColorLoading, setIsLoading }}>
+    <NotesLoadingContext.Provider value={value}>
       {children}
     </NotesLoadingContext.Provider>
   );
 };
-export const useColorLoading = () => useContext(NotesLoadingContext);
+export const useNotesLoading = () => useContext(NotesLoadingContext);

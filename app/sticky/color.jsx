@@ -1,17 +1,20 @@
+"use client"
+
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { PaintBucket } from "lucide-react";
 import changeNoteColor from "@/actions/note/noteColor";
-import Loader from "./Loader";
+import { motion } from "motion/react"
+import { useNotesLoading } from "./contextFile";
 
 const Color = ({ id }) => {
   const [mouseOver, setMouseOver] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const { isLoading, setIsLoading } = useNotesLoading();
 
   const handleClick = async (noteColor, id) => {
-    setIsLoading(true);
+    setIsLoading(id, true);
     await changeNoteColor(noteColor, id);
-    setIsLoading(false);
+    setIsLoading(id, false);
   };
 
   const notesColor = {
@@ -34,25 +37,23 @@ const Color = ({ id }) => {
         <PaintBucket />
       </Button>
 
-      {isLoading && (
-        <div className="absolute left-[-28px] top-[-16px] w-5 h-5 border-2 border-blue-400 border-t-transparent rounded-full animate-spinning"
-        ></div>
-      )}
-
       {mouseOver && (
-        <div
+        <motion.div
           onMouseOver={() => setMouseOver(true)}
           onMouseOut={() => setMouseOver(false)}
+          whileInView={{ scale: 1.09 }}
           className="absolute flex gap-1 top-[-25px] left-0 bg-slate-600 rounded-full shadow-lg w-full p-2"
         >
           {Object.values(notesColor).map((key, index) => (
-            <div
-              onClick={() => handleClick(key, id)}
-              className={`${key} rounded-full border-white/40 border-2 h-5 w-16 shadow-md shadow-black/50 cursor-pointer`}
-              key={key}
-            ></div>
+            <motion.div
+            onClick={() => handleClick(key, id)}
+            whileTap={{ scale: 0.9 }}
+            whileHover={{ scale: 1.09 }}
+            className={`${key} rounded-full border-white/40 border-2 h-5 w-16 shadow-md shadow-black/50 cursor-pointer`}
+            key={key}
+            ></motion.div>
           ))}
-        </div>
+        </motion.div>
       )}
     </>
   );

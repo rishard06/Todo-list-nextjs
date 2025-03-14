@@ -8,17 +8,6 @@ import { revalidatePath } from 'next/cache';
 export default async function noteColor(noteColor, id) {
 
   try {
-
-    const session = await auth();
-    
-    if(!session || !session.user) return "Not Authorized";
-  
-    const user  = await prisma.user.findUnique({
-      where: {
-        email: session.user.email,
-      }
-    })
-  
     await prisma.note.update({
       where:{
         id: id,
