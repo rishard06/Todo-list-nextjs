@@ -7,7 +7,7 @@ import { revalidatePath } from "next/cache";
 
 export async function addNote(title, content) {
   const session = await auth();
-  if (!session && !session?.user) return signIn();
+  if (!session && !session?.user) return await signIn("github");
 
   try {
     const user = await prisma.user.findUnique({
