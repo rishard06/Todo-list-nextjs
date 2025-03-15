@@ -15,7 +15,7 @@ async function authButton() {
         <form
           action={async () => {
             "use server";
-            await signIn("github");
+            await signIn();
           }}
         >
           <div className="flex m-2 hover:cursor-pointer">

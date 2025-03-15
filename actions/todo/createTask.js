@@ -6,7 +6,7 @@ import { revalidatePath } from "next/cache";
 
 export async function addTask(formData) {
   const session = await auth();
-  if (!session && !session?.user) return await signIn("github");
+  if (!session && !session?.user) return await signIn();
 
   try {
     const user = await prisma.user.findUnique({
