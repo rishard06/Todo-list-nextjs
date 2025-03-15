@@ -7,12 +7,12 @@ async function page() {
     <div className="w-full grid grid-cols-3">
       <div className='my-7 col-span-2 flex flex-col gap-8'>
         <Suspense fallback={<p>Loading...</p>}>
-          <TodayTask />
+          {/* <TodayTask /> */}
         </Suspense>
       </div>
       
       <Suspense fallback={<p>Loading...</p>}>
-        <Details path={"/today"} />
+        {/* <Details path={"/today"} /> */}
       </Suspense>
     </div>
   )
