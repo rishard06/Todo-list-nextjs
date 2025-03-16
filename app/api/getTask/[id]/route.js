@@ -14,8 +14,8 @@ export async function GET(request, { params }) {
       return NextResponse.json({ error: "Task not found" }, { status: 404 });
 
     return NextResponse.json(getTask);
-  } catch (err) {
+  } catch (error) {
     // console.error("Erron fetching task", err)
-    return NextResponse.json({ error: "Faild to fetch data" }, { status: 500 });
+    return NextResponse.json({ error: "Faild to fetch data" }, { status: 500 }, error);
   }
 }

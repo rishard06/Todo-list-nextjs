@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import Sidebarr from "./components/Sidebar";
-import { Geist, Geist_Mono, Montserrat } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import "./globals.css";
 import DarkModeBtn from "./components/DarkModeBtn";
 import ThemesProvider from "./components/ThemeProvider";

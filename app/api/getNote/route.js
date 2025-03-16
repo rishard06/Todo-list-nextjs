@@ -2,7 +2,7 @@ import { auth } from "@/lib/auth";
 import prisma from "@/lib/db";
 import { NextResponse } from "next/server";
 
-export async function GET(req) {
+export async function GET() {
   const user = await auth();
 
   if(!user) {
@@ -21,7 +21,7 @@ export async function GET(req) {
 
     return NextResponse.json(getNote);
   } catch (error) {
-    return NextResponse.json({ error: "Faild to fetch data" }, { status: 500 });
+    return NextResponse.json({ error: "Faild to fetch data" }, { status: 500 }, error);
   }
 }
 
