@@ -54,15 +54,15 @@ export default function App({ data }) {
                   exit={{ x: "-50%", opacity: 0, scale: 0.5 }}
                   key={id}
                   data-swapy-slot={id}
-                  className={`rounded-xl border-4 ${
-                    done ? "border-green-400" : "border-slate-500"
-                  }`}
+                  className={`rounded-xl`}
                 >
                   <div
                     data-swapy-item={id}
                     className={`relative ${
                       color || "bg-yellow-100"
-                    } rounded-lg h-auto max-w-[230px]  px-2 pb-2`}
+                    } rounded-lg h-auto max-w-[230px]  px-2 pb-2 border-4 ${
+                    done ? "border-green-400 " : "border-slate-500"
+                  }`}
                   >
                     <NotesLoadingProvider>
                       <PopOver id={id} />

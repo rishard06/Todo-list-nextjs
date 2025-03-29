@@ -31,12 +31,12 @@ export default function Inputs({ note }) {
         type="text"
         value={inputs.input}
         onChange={handleInput}
-        className="bg-none border-none text-black/60 font-bold p-1"
+        className={`bg-none border-none text-black/60 font-bold p-1 ${note.done && "line-through text-black/30"}`} 
       />
       <Textarea
         value={inputs.textarea}
         onChange={handleTextArea}
-        className="h-[200px] border-none shadow-none text-black/70 py-0 px-1"
+        className={`h-[200px] border-none shadow-none text-black/70 py-0 px-1 ${note.done && "line-through text-black/30"}`}
       ></Textarea>
 
       {isLoading(note.id) && (
