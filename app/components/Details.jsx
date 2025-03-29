@@ -12,6 +12,7 @@ import DeleteCard from "./deleteCard";
 import { updateTask } from "@/actions/todo/updateTask";
 import { deleteTask } from "@/actions/todo/deleteTask";
 import { XCircle } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
 
 function Details({ path }) {
   const searchParams = useSearchParams();
@@ -19,6 +20,18 @@ function Details({ path }) {
 
   const [todoData, setTodoData] = useState(null);
   const [isDelete, setIsDelete] = useState(false);  
+
+  // const getTodoData = async () => {
+  //   const response = await fetch(`api/getTask/${id}`);
+  //   return await response.json();
+  // }
+
+  // const { data } = useQuery({
+  //   queryKey: ["todoData"],
+  //   queryFn: getTodoData,
+  // });
+
+  // console.log("this is data",data, "todo data", todoData);
 
   useEffect(() => {
     async function getData() {
