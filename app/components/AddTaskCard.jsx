@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React, { useState } from "react";
 import {
@@ -9,18 +9,14 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea"
+import { Textarea } from "@/components/ui/textarea";
 import { DatePickerWithPresets } from "./calendar";
 import Priority from "./Priority";
 import { addTask } from "@/actions/todo/createTask";
 import { format } from "date-fns";
+import { AnimatePresence, motion } from "framer-motion";
 
 function AddTaskCard({ handleClick }) {
   const [selectedDate, setSelectedDate] = useState("");
@@ -28,34 +24,43 @@ function AddTaskCard({ handleClick }) {
 
   const handleDate = (date) => {
     setSelectedDate(format(date, "PP"));
-  }
+  };
 
   const handlePriority = (prior) => {
-    setPriority(prior)
-  }
+    setPriority(prior);
+  };
 
   return (
-    <form action={addTask} onSubmit={() => handleClick(false)}>
-      <Card className="shadow-xl absolute w-full animate-popup">
+    <motion.form
+      initial={{ opacity: 0, scale: 1.3 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.5, y: 100 }}
+      transition={{ duration: 0.5, type: "spring", bounce: 0.3 }}
+      action={addTask}
+      onSubmit={() => handleClick(false)}
+    >
+      <Card className="shadow-xl absolute w-full">
         <CardHeader>
-          <Input type="text" placeholder="Title" name="title" required/>
-          <Textarea placeholder="Description" name="description"/>
+          <Input type="text" placeholder="Title" name="title" required />
+          <Textarea placeholder="Description" name="description" />
         </CardHeader>
 
         <CardContent className="flex gap-3">
           <DatePickerWithPresets date={selectedDate} setDate={handleDate} />
-          <input type="hidden" name="date" value={selectedDate}/>
+          <input type="hidden" name="date" value={selectedDate} />
 
-          <Priority handlePriority={handlePriority}  />
-          <input type="hidden" name="priority" value={priority}/>
+          <Priority handlePriority={handlePriority} />
+          <input type="hidden" name="priority" value={priority} />
         </CardContent>
 
         <CardFooter className="flex gap-2 justify-end">
-            <Button variant="outline" onClick={() => handleClick(false)} >Cancel</Button>
-            <Button type="submit">Add task</Button>
+          <Button variant="outline" onClick={() => handleClick(false)}>
+            Cancel
+          </Button>
+          <Button type="submit">Add task</Button>
         </CardFooter>
       </Card>
-    </form>
+    </motion.form>
   );
 }
 

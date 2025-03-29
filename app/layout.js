@@ -24,14 +24,14 @@ export default function RootLayout({ children }) {
     <html lang="en" suppressHydrationWarning>
       <body className={` ${montserrat.className} antialiased`}>
         <ThemesProvider>
-          <Suspense fallback={<p>Loading...</p>}>
+          {/* <Suspense fallback={<p>Loading...</p>}> */}
             <SidebarProvider>
               <SidebarTrigger className="my-3 mx-2" />
               <Sidebarr />
               <DarkModeBtn />
               {children}
             </SidebarProvider>
-          </Suspense>
+          {/* </Suspense> */}
         </ThemesProvider>
       </body>
     </html>

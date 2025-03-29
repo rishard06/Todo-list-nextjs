@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import AddTaskCard from "./AddTaskCard";
 import { PlusCircle } from "lucide-react";
+import { AnimatePresence } from "framer-motion";
 
 function MainPage({ pageProps, children }) {
   const [addTask, setAddTask] = useState(false);
@@ -25,7 +26,9 @@ function MainPage({ pageProps, children }) {
           </button>
         </div>
 
-        {addTask && <AddTaskCard handleClick={handleClick} />}
+        <AnimatePresence>
+          {addTask && <AddTaskCard handleClick={handleClick} />}
+        </AnimatePresence>
 
         {children}
       </div>
