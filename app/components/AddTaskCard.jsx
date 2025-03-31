@@ -32,10 +32,22 @@ function AddTaskCard({ handleClick }) {
 
   return (
     <motion.form
-      initial={{ opacity: 0, scale: 1.3 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.5, y: 100 }}
-      transition={{ duration: 0.5, type: "spring", bounce: 0.3 }}
+      whileInView={{ 
+        opacity: 1, 
+        scale: 1, 
+        ease: "easeOut" 
+      }}
+      exit={{
+        opacity: 0,
+        scale: [1, 1.1],
+        y: 10,
+        ease: "easeIn",
+      }}
+      transition={{
+        duration: { opacity: 0.5 },
+        type: "spring",
+        bounce: 0.5,
+      }}
       action={addTask}
       onSubmit={() => handleClick(false)}
     >
